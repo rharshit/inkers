@@ -51,7 +51,23 @@ void get_mime_type(char * path){
 	system(cmd);
 }
 
-vector<char *> get_sorted_list(){
+bool compare_size(const file_info * a, const file_info * b){
+  return a->info.st_size < b->info.st_size;
+}
+
+bool compare_path(const file_info * a, const file_info * b){
+  return strcmp(a->path, b->path)<0;
+}
+
+bool compare_atime(const file_info * a, const file_info * b){
+  return a->info.st_atime < b->info.st_atime;
+}
+
+vector<char *> get_sorted_list(int opt){
+	// 1. Sort by size
+	// 2. Sort by name
+	// 3. Sort by access date
+	
 	vector<char *> list;
 	vector<struct file_info * > fi;
 	struct file_info * itr;
@@ -59,6 +75,17 @@ vector<char *> get_sorted_list(){
 	while(itr){
 		fi.push_back(itr);
 		itr = itr->next;
+	}
+	switch(opt){
+		case 1:
+			sort(fi.begin(), fi.end(), compare_size);
+			break;
+		case 2:
+			sort(fi.begin(), fi.end(), compare_path);
+			break;
+		case 3:
+			sort(fi.begin(), fi.end(), compare_atime);
+			break;
 	}
 	for(struct file_info * f:fi){
 		list.push_back(f->path);

@@ -26,20 +26,29 @@ int main(int argc, char const *argv[])
 			}
 			case 2:
 			{
-				/*int sort;
-				cout<<"1. Sort by name"<<endl<<
+				int sort;
+				cout<<"1. Sort by size"<<endl<<
 					"2. Sort by name"<<endl<<
-					"3. Sort by name"<<endl;
+					"3. Sort by access date"<<endl;
 				cout<<"Option: ";
-				cin>>sort;*/
-				vector<char *> list = get_sorted_list();
-				for(char * file:list){
-					cout<<file<<endl;
+				cin>>sort;
+				if(sort>=1 && sort<=3){
+					vector<char *> list = get_sorted_list(sort);
+					for(char * file:list){
+						cout<<file<<endl;
+					}
+				} else {
+					cout<<"Invalid option"<<endl;
 				}
 				break;
 			}
 			case 0:
 			{
+				break;
+			}
+			default:
+			{
+				cout<<"Invalid option"<<endl;
 				break;
 			}
 		}
