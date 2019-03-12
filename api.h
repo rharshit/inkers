@@ -1,3 +1,5 @@
+#include <bits/stdc++.h>
+
 void test();
-void print_list();
+std::vector<char *> get_sorted_list();
 struct stat get_file_info(char * path);

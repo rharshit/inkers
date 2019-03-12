@@ -1,6 +1,5 @@
 #include <bits/stdc++.h>
 #include <sys/stat.h>
-#include <sys/types.h>
 
 #include "api.h"
 using namespace std;
@@ -33,7 +32,10 @@ int main(int argc, char const *argv[])
 					"3. Sort by name"<<endl;
 				cout<<"Option: ";
 				cin>>sort;*/
-				print_list();
+				vector<char *> list = get_sorted_list();
+				for(char * file:list){
+					cout<<file<<endl;
+				}
 				break;
 			}
 			case 0:

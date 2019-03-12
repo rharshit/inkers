@@ -1,5 +1,4 @@
 #include <bits/stdc++.h>
-#include <sys/types.h>
 #include <sys/stat.h>
 
 using namespace std;
@@ -52,6 +51,21 @@ void get_mime_type(char * path){
 	system(cmd);
 }
 
+vector<char *> get_sorted_list(){
+	vector<char *> list;
+	vector<struct file_info * > fi;
+	struct file_info * itr;
+	itr = head;
+	while(itr){
+		fi.push_back(itr);
+		itr = itr->next;
+	}
+	for(struct file_info * f:fi){
+		list.push_back(f->path);
+	}
+	return list;
+}
+
 struct stat get_file_info(char * path){
 	struct stat attr;
 	if(stat(path, &attr) < 0){
@@ -60,6 +74,5 @@ struct stat get_file_info(char * path){
 		get_mime_type(path);
 		store(attr, path);
 	}
-	print_list();
 	return attr;
 }
