@@ -46,13 +46,19 @@ void print_list(){
 	}
 }
 
+void get_mime_type(char * path){
+	char cmd[50];
+	sprintf(cmd, "file -i %s", path);
+	system(cmd);
+}
+
 struct stat get_file_info(char * path){
 	struct stat attr;
 	if(stat(path, &attr) < 0){
 		cout<<"Error: "<<strerror(errno)<<endl;
 	} else {
+		get_mime_type(path);
 		store(attr, path);
-
 	}
 	print_list();
 	return attr;
