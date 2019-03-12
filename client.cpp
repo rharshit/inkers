@@ -7,7 +7,7 @@ using namespace std;
 int main(int argc, char const *argv[])
 {
 	char path[50];
-	int opt=0;
+	int opt=-1;
 	do{
 		cout<<endl<<"1. Get file info"<<endl<<
 			"2. Get files list"<<endl<<
@@ -27,13 +27,14 @@ int main(int argc, char const *argv[])
 			case 2:
 			{
 				int sort;
-				cout<<"1. Sort by size"<<endl<<
+				cout<<endl<<"1. Sort by size"<<endl<<
 					"2. Sort by name"<<endl<<
 					"3. Sort by access date"<<endl;
 				cout<<"Option: ";
 				cin>>sort;
 				if(sort>=1 && sort<=3){
 					vector<char *> list = get_sorted_list(sort);
+					cout<<endl;
 					for(char * file:list){
 						cout<<file<<endl;
 					}
